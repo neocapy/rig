@@ -8,6 +8,7 @@ use serde_json::{Value, json};
 use std::convert::Infallible;
 use std::str::FromStr;
 
+#[allow(dead_code)]
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "lowercase", tag = "type")]
 /// Represents the content sent back in the StreamDelta for an Assistant
@@ -26,6 +27,7 @@ impl FromStr for AssistantContent {
     }
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 #[serde(rename_all = "lowercase", tag = "role")]
 enum StreamDelta {
@@ -35,6 +37,7 @@ enum StreamDelta {
     },
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 struct StreamingChoice {
     index: usize,
@@ -43,6 +46,7 @@ struct StreamingChoice {
     finish_reason: Option<String>,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 struct CompletionChunk {
     id: String,

@@ -577,6 +577,7 @@ fn calculate_max_tokens(model: &str) -> Option<u64> {
     }
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize, Serialize)]
 struct Metadata {
     user_id: Option<String>,
