@@ -53,6 +53,8 @@ pub struct MessageStart {
 pub enum ContentDelta {
     TextDelta { text: String },
     InputJsonDelta { partial_json: String },
+    ThinkingDelta { thinking: String },
+    SignatureDelta { signature: String },
 }
 
 #[derive(Debug, Deserialize)]
@@ -237,6 +239,16 @@ fn handle_event(
                 if let Some(tool_call) = current_tool_call {
                     tool_call.input_json.push_str(partial_json);
                 }
+                None
+            }
+            ContentDelta::ThinkingDelta { thinking: _ } => {
+                // Thinking deltas contain internal reasoning - we ignore them
+                // to avoid displaying internal model thoughts to the user
+                None
+            }
+            ContentDelta::SignatureDelta { signature: _ } => {
+                // Signature deltas contain cryptographic signatures - we ignore them
+                // as they're for internal authentication/verification
                 None
             }
         },
